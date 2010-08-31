@@ -1,0 +1,9 @@
+Description:
+    Generates the cable menu migration and model.
+
+Example:
+    ./script/generate cable_menu MenuModelName
+
+    This will create:
+        db/migrate/menu_migration.rb
+	app/models/MenuModelName.rb
