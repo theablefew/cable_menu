@@ -1,13 +1,50 @@
 CableMenu
 =========
 
-Introduction goes here.
+The modular menu system from Cable. 
 
 
 Example
 =======
 
-Example goes here.
+sudo gem install cable_menu
+
+========================================
+
+script/generate cable_menu your_menu_name
+script/generate model Page title:string
+rake db:migrate
+
+=========================================
+
+#environment.rb 
+gem.config "acts_as_tree"
+gem.config "cable_menu"
+
+#page.rb
+class Page < ActiveRecord::Base
+  acts_as_cable
+end
+
+#your_menu_name.rb
+class YourMenuName < ActiveRecord::Base
+  acts_as_cable_menu 
+end
+
+=========================================
+
+script/console
+>> p = Page.new :title => "About Us"
+=> #<Page id: nil, title: "About Us", created_at: nil, updated_at: nil>
+>> p.build_menu :title => "About Us", :url => "about_us"
+=> #<Menu id: nil, title: "About Us", cable_menuable_id: nil, cable_menuable_type: "Page", parent_id: nil, url: "about_us", created_at: nil, updated_at: nil>
+>> p.save
+=> true
+>> p.menu.url
+=> "about_us"
+>> p.menu.resource
+=> #<Page id: 2, title: "About Us", created_at: "2010-08-29 07:36:23", updated_at: "2010-08-29 07:36:23">
 
 
-Copyright (c) 2010 [name of plugin creator], released under the MIT license
+
+Copyright (c) 2010 The Able Few, LLC, released under the MIT license
