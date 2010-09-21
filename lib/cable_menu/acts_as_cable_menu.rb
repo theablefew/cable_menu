@@ -8,7 +8,7 @@ module CableMenu
     def acts_as_cable_menu
       send :include, InstanceMethods
       belongs_to :cable_menuable, :polymorphic => true
-      acts_as_tree
+      acts_as_nested_set
     end
   end
   
