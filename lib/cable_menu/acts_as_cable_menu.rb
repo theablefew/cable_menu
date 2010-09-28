@@ -5,9 +5,9 @@ module CableMenu
   end
   
   module ClassMethods
-    def acts_as_cable_menu
+    def acts_as_cable_menu( reflection_options = {} )
       send :include, InstanceMethods
-      belongs_to :cable_menuable, :polymorphic => true
+      belongs_to :cable_menuable, reflection_options.merge( :polymorphic => true )
       acts_as_nested_set
     end
   end
