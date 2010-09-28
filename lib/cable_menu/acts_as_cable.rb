@@ -5,9 +5,9 @@ module Cable
   end
   
   module ClassMethods
-    def acts_as_cable
+    def acts_as_cable( reflection_options = {} )
       send :include, InstanceMethods
-      has_one :menu, :as => :cable_menuable
+      has_one :menu, reflection_options.merge( :as => :cable_menuable )
     end
   end
   
